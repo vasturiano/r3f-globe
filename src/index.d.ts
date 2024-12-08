@@ -202,7 +202,7 @@ export interface GlobeProps extends ThreeGlobeConfigOptions {
   customThreeObjectUpdate?: string | ((obj: Object3D, objData: object) => void);
 
   // Interaction
-  onClick?: (layer: string, elemData: object | undefined, event: MouseEvent) => void;
+  onClick?: (layer: string, elemData: object | undefined, event: React.MouseEvent) => void;
   onHover?: (layer: string | undefined, elemData: object | undefined) => void;
 
   // Render options
