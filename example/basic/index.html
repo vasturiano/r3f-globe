@@ -2,12 +2,13 @@
   <style> body { margin: 0; } </style>
 
   <script type="importmap">{ "imports": {
-    "three": "//unpkg.com/three/build/three.module.js",
-    "three/addons/": "//unpkg.com/three/examples/jsm/",
-    "react": "https://esm.sh/react@18.2",
-    "react-dom": "https://esm.sh/react-dom@18.2/client",
-    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.16.1",
-    "@react-three/drei": "https://esm.sh/@react-three/drei@9.105.3"
+    "three": "https://esm.sh/three",
+    "react": "https://esm.sh/react@18",
+    "react/": "https://esm.sh/react@18/",
+    "react-dom": "https://esm.sh/react-dom@18",
+    "react-dom/": "https://esm.sh/react-dom@18/",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei?external=@react-three/fiber,react,react-dom,three"
   }}</script>
   <script type="module">
     import * as THREE from 'three';
@@ -54,7 +55,7 @@
     const Scene = () => {
       return <div style={{ height: window.innerHeight }}>
         <Canvas camera={useMemo(() => ({position: [0, 0, 250]}), [])}>
-          <OrbitControls minDistance={101} maxDistance={1e4} dampingFactor={0.1} zoomSpeed={0.3} rotateSpeed={0.3}/>
+          <OrbitControls minDistance={101} maxDistance={1e4} dampingFactor={0.1} zoomSpeed={0.3} rotateSpeed={0.3} />
           <color attach="background" args={[0, 0, 0]}/>
           <ambientLight intensity={Math.PI}/>
           <directionalLight intensity={0.6 * Math.PI}/>
@@ -64,6 +65,6 @@
     };
 
     ReactDOM.createRoot(document.getElementById('r3fScene'))
-      .render(<Scene/>);
+      .render(<Scene />);
   </script>
 </body>
