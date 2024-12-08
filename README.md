@@ -1,5 +1,5 @@
-R3F-Globe - React-Three-Fiber Globe Visualization
-=================================================
+React-Three-Fiber Globe Visualization
+=====================================
 
 [![NPM package][npm-img]][npm-url]
 [![Build Size][build-size-img]][build-size-url]
@@ -269,6 +269,8 @@ then
 
 ### Interaction
 
+| Prop | Type | Default | Description |
+| --- | :--: | :--: | --- |
 | <b>onClick</b> | <i>func</i> | *-* | Callback function for globe element clicks. The type of layer, the associated data object (if exists) and the event object are included as arguments: `onClick(layer, elementData, event)`. |
 | <b>onHover</b> | <i>func</i> | *-* | Callback function for globe element mouse over events. The type of layer (or `undefined` if it's hovering off the globe) and the associated data object (if exists) are included as arguments: `onHover(layer, elementData)`. |
 
