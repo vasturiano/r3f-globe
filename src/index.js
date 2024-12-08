@@ -1,4 +1,4 @@
-import { forwardRef, useCallback, useEffect, useState } from 'react';
+import { createElement, forwardRef, useCallback, useEffect, useState } from 'react';
 import ThreeGlobe from 'three-globe';
 
 import fromThree from './fromThree';
@@ -27,13 +27,13 @@ const Globe = forwardRef(({ onHover, onClick, ...ptProps }, ref) => {
     }
   }, [onClick]);
 
-  return <GlobeComp
-    { ...ptProps }
-    ref={ref}
-    onPointerOver={onHoverInt}
-    onPointerOut={onHoverInt}
-    onClick={onClickInt}
-  />
+  return createElement(GlobeComp, {
+    ...ptProps,
+    ref,
+    onPointerOver: onHoverInt,
+    onPointerOut: onHoverInt,
+    onClick: onClickInt
+  });
 });
 
 export default Globe;
