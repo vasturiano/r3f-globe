@@ -1,0 +1,73 @@
+{
+  "name": "r3f-globe",
+  "version": "0.1.0",
+  "description": "React Three Fiber component for Globe Data Visualization",
+  "type": "module",
+  "unpkg": "dist/r3f-globe.min.js",
+  "main": "dist/r3f-globe.mjs",
+  "module": "dist/r3f-globe.mjs",
+  "types": "dist/r3f-globe.d.ts",
+  "exports": {
+    "types": "./dist/r3f-globe.d.ts",
+    "umd": "./dist/r3f-globe.min.js",
+    "default": "./dist/r3f-globe.mjs"
+  },
+  "sideEffects": false,
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vasturiano/r3f-globe.git"
+  },
+  "homepage": "https://github.com/vasturiano/r3f-globe",
+  "keywords": [
+    "3d",
+    "globe",
+    "react-three-fiber",
+    "webgl",
+    "visualization",
+    "three"
+  ],
+  "author": {
+    "name": "Vasco Asturiano",
+    "url": "https://github.com/vasturiano"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vasturiano/r3f-globe/issues"
+  },
+  "scripts": {
+    "build": "rimraf dist && rollup -c",
+    "dev": "rollup -w -c rollup.config.dev.js",
+    "prepare": "npm run build"
+  },
+  "files": [
+    "dist/**/*",
+    "example/**/*"
+  ],
+  "dependencies": {
+    "jerrypick": "1",
+    "three-globe": "2"
+  },
+  "peerDependencies": {
+    "react": "*",
+    "three": ">=0.154"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/preset-react": "^7.26.3",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^28.0.1",
+    "@rollup/plugin-node-resolve": "^15.3.0",
+    "@rollup/plugin-replace": "^6.0.1",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/react": "^18.3.12",
+    "rimraf": "^6.0.1",
+    "rollup": "^4.28.1",
+    "rollup-plugin-dts": "^6.1.1",
+    "three": "^0.171.0",
+    "typescript": "^5.7.2"
+  },
+  "engines": {
+    "node": ">=12"
+  }
+}

@@ -1,0 +1,69 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script type="importmap">{ "imports": {
+    "three": "//unpkg.com/three/build/three.module.js",
+    "three/addons/": "//unpkg.com/three/examples/jsm/",
+    "react": "https://esm.sh/react@18.2",
+    "react-dom": "https://esm.sh/react-dom@18.2/client",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber@8.16.1",
+    "@react-three/drei": "https://esm.sh/@react-three/drei@9.105.3"
+  }}</script>
+  <script type="module">
+    import * as THREE from 'three';
+    window.THREE = THREE;
+    import * as React from 'react';
+    window.React = React;
+  </script>
+
+  <script src="//unpkg.com/@babel/standalone"></script>
+
+  <script src="//unpkg.com/r3f-globe" defer></script>
+<!--  <script src="../../dist/r3f-globe.js" defer></script>-->
+</head>
+
+<body>
+  <div id="r3fScene"></div>
+
+  <script type="text/jsx" data-type="module">
+    import { useMemo, useCallback } from "react";
+    import ReactDOM from "react-dom";
+    import { Canvas } from '@react-three/fiber';
+    import { OrbitControls } from '@react-three/drei';
+
+    const GlobeViz = () => {
+      const N = 300;
+      const gData = useMemo(() => [...Array(N).keys()].map(() => ({
+        lat: (Math.random() - 0.5) * 180,
+        lng: (Math.random() - 0.5) * 360,
+        size: Math.random() / 3,
+        color: ['red', 'white', 'blue', 'green'][Math.round(Math.random() * 3)]
+      })), [N]);
+
+      return <R3fGlobe
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-night.jpg"
+        bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
+        pointsData={gData}
+        pointAltitude="size"
+        pointColor="color"
+        onHover={useCallback((...args) => console.log('hover', ...args), [])}
+        onClick={useCallback((...args) => console.log('click', ...args), [])}
+      />;
+    }
+
+    const Scene = () => {
+      return <div style={{ height: window.innerHeight }}>
+        <Canvas camera={useMemo(() => ({position: [0, 0, 250]}), [])}>
+          <OrbitControls minDistance={101} maxDistance={1e4} dampingFactor={0.1} zoomSpeed={0.3} rotateSpeed={0.3}/>
+          <color attach="background" args={[0, 0, 0]}/>
+          <ambientLight intensity={Math.PI}/>
+          <directionalLight intensity={0.6 * Math.PI}/>
+          <GlobeViz />
+        </Canvas>
+      </div>;
+    };
+
+    ReactDOM.createRoot(document.getElementById('r3fScene'))
+      .render(<Scene/>);
+  </script>
+</body>
