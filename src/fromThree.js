@@ -1,4 +1,5 @@
-import React, {
+import {
+  createElement,
   forwardRef,
   useCallback,
   useEffect,
@@ -56,7 +57,7 @@ export default function fromThree(ThreeComponent, {
       )
     ));
 
-    return React.createElement('primitive', {
+    return createElement('primitive', {
       ...passThroughProps,
       object: threeObj,
     });
