@@ -1,0 +1,82 @@
+<head>
+  <style>
+    body { margin: 0; }
+    .fly-controls-info {
+      position: absolute;
+      font-family: sans-serif;
+      pointer-events: none;
+      user-select: none;
+      bottom: 5px;
+      width: 100%;
+      text-align: center;
+      color: slategrey;
+      opacity: 0.7;
+      font-size: 10px;
+    }
+  </style>
+
+  <script type="importmap">{ "imports": {
+    "three": "https://esm.sh/three",
+    "react": "https://esm.sh/react@18",
+    "react/": "https://esm.sh/react@18/",
+    "react-dom": "https://esm.sh/react-dom@18",
+    "react-dom/": "https://esm.sh/react-dom@18/",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei?external=@react-three/fiber,react,react-dom,three"
+  }}</script>
+  <script type="module">
+    import * as THREE from 'three';
+    window.THREE = THREE;
+    import * as React from 'react';
+    window.React = React;
+  </script>
+
+  <script src="//unpkg.com/@babel/standalone"></script>
+  <script src="//unpkg.com/d3"></script>
+  <script src="//unpkg.com/d3-dsv"></script>
+  <script src="//unpkg.com/topojson-client"></script>
+
+  <script src="//unpkg.com/r3f-globe" defer></script>
+<!--  <script src="../../dist/r3f-globe.js" defer></script>-->
+</head>
+
+<body>
+  <div id="r3fScene"></div>
+  <div class="fly-controls-info">WASD: move, R|F: up | down, Q|E: roll, up|down: pitch, left|right: yaw</div>
+
+  <script type="text/jsx" data-type="module">
+    import { useCallback } from "react";
+    import ReactDOM from "react-dom";
+    import { Canvas } from '@react-three/fiber';
+    import { FlyControls } from '@react-three/drei';
+
+    import GlobeComps from "./globes.js";
+
+    const Globes = () => <>
+      {GlobeComps.map((Globe, idx) => {
+        const r = Math.sqrt(GlobeComps.length - 1) * 230;
+        const angle = idx * 2 * Math.PI / GlobeComps.length;
+        return <Globe
+          position={[r * Math.cos(angle), 0, r * Math.sin(angle)]}
+          onHover={useCallback((...args) => console.log('hover', ...args), [])}
+          onClick={useCallback((...args) => console.log('click', ...args), [])}
+        />
+      })}
+    </>;
+
+    const Scene = () => {
+      return <div style={{ height: window.innerHeight }}>
+        <Canvas camera={{ far: 4000 }}>
+          <FlyControls movementSpeed={250} rollSpeed={Math.PI / 6} dragToLook={true} />
+          <color attach="background" args={[0, 0, 0]}/>
+          <ambientLight intensity={Math.PI}/>
+          <directionalLight intensity={0.6 * Math.PI}/>
+          <Globes />
+        </Canvas>
+      </div>;
+    };
+
+    ReactDOM.createRoot(document.getElementById('r3fScene'))
+      .render(<Scene />);
+  </script>
+</body>
