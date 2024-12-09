@@ -1,4 +1,4 @@
-import { createElement, forwardRef, useCallback, useEffect, useState } from 'react';
+import { createElement, forwardRef, useCallback, useRef } from 'react';
 import ThreeGlobe from 'three-globe';
 
 import fromThree from './fromThree';
@@ -21,13 +21,17 @@ const getGlobeEventObj = ({ intersections }) => {
 const getObjData = obj => obj?.__globeObjType === 'polygon' ? obj?.__data?.data : obj?.__data;
 
 const Globe = forwardRef(({ onHover, onClick, ...ptProps }, ref) => {
-  const [curHoverObj, setCurHoverObj] = useState('init');
+  const curHoverObjRef = useRef(null);
 
-  useEffect(() => {
-    onHover && curHoverObj !== 'init' && onHover(curHoverObj?.__globeObjType, getObjData(curHoverObj));
-  }, [curHoverObj, onHover]);
+  const onHoverInt = useCallback((e) => {
+    if (!onHover) return;
+    const hoverObj = getGlobeEventObj(e);
+    if (hoverObj !== curHoverObjRef.current) {
+      curHoverObjRef.current = hoverObj;
+      onHover(hoverObj?.__globeObjType, getObjData(hoverObj));
+    }
+  },[onHover]);
 
-  const onHoverInt = useCallback((e) => setCurHoverObj(getGlobeEventObj(e)), [setCurHoverObj]);
   const onClickInt = useCallback((e) => {
     const obj = getGlobeEventObj(e);
     if(obj && onClick) {
