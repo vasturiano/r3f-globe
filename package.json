@@ -1,6 +1,6 @@
 {
   "name": "r3f-globe",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "React Three Fiber component for Globe Data Visualization",
   "type": "module",
   "unpkg": "dist/r3f-globe.min.js",
