@@ -1,4 +1,6 @@
 import { createElement, useMemo, useState, useEffect, useCallback } from 'react';
+import { csvParse, scaleSequentialSqrt, interpolateYlOrRd } from 'https://esm.sh/d3';
+import * as topojson from 'https://esm.sh/topojson-client';
 
 export const Points = ptProps => {
   const N = 300;
@@ -161,11 +163,11 @@ export const Population = ptProps => {
   useEffect(() => {
     // load data
     fetch('./data/world_population.csv').then(res => res.text())
-      .then(csv => d3.csvParse(csv, ({ lat, lng, pop }) => ({ lat: +lat, lng: +lng, pop: +pop })))
+      .then(csv => csvParse(csv, ({ lat, lng, pop }) => ({ lat: +lat, lng: +lng, pop: +pop })))
       .then(setPopData);
   }, []);
 
-  const weightColor = d3.scaleSequentialSqrt(d3.interpolateYlOrRd)
+  const weightColor = scaleSequentialSqrt(interpolateYlOrRd)
     .domain([0, 1e7]);
 
   return createElement(R3fGlobe, {
