@@ -17,6 +17,7 @@
 
   <script type="importmap">{ "imports": {
     "three": "https://esm.sh/three",
+    "three/addons/": "https://esm.sh/three/examples/jsm/",
     "react": "https://esm.sh/react@18",
     "react/": "https://esm.sh/react@18/",
     "react-dom": "https://esm.sh/react-dom@18",
@@ -24,16 +25,8 @@
     "@react-three/fiber": "https://esm.sh/@react-three/fiber?external=react,react-dom,three",
     "@react-three/drei": "https://esm.sh/@react-three/drei?external=@react-three/fiber,react,react-dom,three"
   }}</script>
-  <script type="module">
-    import * as THREE from 'three';
-    window.THREE = THREE;
-    import * as React from 'react';
-    window.React = React;
-  </script>
 
-  <script src="//unpkg.com/@babel/standalone"></script>
-
-  <script src="//unpkg.com/r3f-globe" defer></script>
+<!--  <script type="module">import * as THREE from 'three'; import * as React from 'react'; window.THREE = THREE; window.React = React;</script>-->
 <!--  <script src="../../dist/r3f-globe.js" defer></script>-->
 </head>
 
@@ -41,8 +34,9 @@
   <div id="r3fScene"></div>
   <div class="fly-controls-info">WASD: move, R|F: up | down, Q|E: roll, up|down: pitch, left|right: yaw</div>
 
+  <script src="//unpkg.com/@babel/standalone"></script>
   <script type="text/jsx" data-type="module">
-    import { useCallback } from "react";
+    import React, { useCallback } from "react";
     import ReactDOM from "react-dom";
     import { Canvas } from '@react-three/fiber';
     import { FlyControls } from '@react-three/drei';

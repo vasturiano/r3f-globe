@@ -1,4 +1,6 @@
+import R3fGlobe from 'https://esm.sh/r3f-globe?external=three,react';
 import { createElement, useMemo, useState, useEffect, useCallback } from 'react';
+import * as THREE from 'three';
 import { csvParse, scaleSequentialSqrt, interpolateYlOrRd } from 'https://esm.sh/d3';
 import * as topojson from 'https://esm.sh/topojson-client';
 
