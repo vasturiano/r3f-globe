@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Object3D, Material, Vector2, Vector3 } from 'three';
+import { Object3D, Material, Vector2, Camera } from 'three';
 import { ConfigOptions as ThreeGlobeConfigOptions } from 'three-globe';
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
@@ -213,7 +213,7 @@ export interface GlobeMethods {
   // Render control
   pauseAnimation(): void;
   resumeAnimation(): void;
-  setPointOfView(pov: Vector3, globePos?: Vector3): void;
+  setPointOfView(camera: Camera): void;
 
   // Utility
   getGlobeRadius(): number;
