@@ -14,6 +14,7 @@ React-Three-Fiber Globe Visualization
 #### Check out the examples:
 * [Basic](https://vasturiano.github.io/r3f-globe/example/basic/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/basic/index.html))
 * [Scene with multiple globe styles](https://vasturiano.github.io/r3f-globe/example/multiple-globes/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/multiple-globes/index.html))
+* [Satellites](https://vasturiano.github.io/r3f-globe/example/satellites/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/satellites/index.html))
 
 ## Quick start
 
@@ -44,6 +45,7 @@ then
 * [Hex Bin Layer](#hex-bin-layer)
 * [Hexed Polygons Layer](#hexed-polygons-layer)
 * [Tiles Layer](#tiles-layer)
+* [Particles Layer](#particles-layer)
 * [Rings Layer](#rings-layer)
 * [Labels Layer](#labels-layer)
 * [HTML Elements Layer](#html-elements-layer)
@@ -205,6 +207,20 @@ then
 | <b>tileCurvatureResolution</b> | <i>number</i>, <i>string</i> or <i>func</i> | 5 | Tile object accessor function, attribute or a numeric constant for the resolution (in angular degrees) of the surface curvature. The finer the resolution, the more the tile geometry is fragmented into smaller faces to approximate the spheric surface, at the cost of performance. |
 | <b>tilesTransitionDuration</b> | <i>number</i> | 1000 | Duration (ms) of the transition to animate tile changes involving geometry modifications. A value of `0` will move the tiles immediately to their final position. New tiles are animated by scaling them from the centroid outwards. |
 
+### Particles Layer
+
+| Prop | Type | Default | Description |
+| --- | :--: | :--: | --- |
+| <b>particlesData</b> | <i>array</i> | `[]` | List of particle sets to represent in the particles map layer. Each particle set is displayed as a group of [Points](https://threejs.org/docs/#api/en/objects/Points). Each point in the group is a geometry vertex and can be individually positioned anywhere relative to the globe. |
+| <b>particlesList</b> | <i>string</i> or <i>func</i> | `d => d` | Particle set accessor function or attribute for the list of particles in the set. By default, the data structure is expected to be an array of arrays of individual particle objects. |
+| <b>particleLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Particle object accessor function, attribute or a numeric constant for the latitude coordinate. |
+| <b>particleLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Particle object accessor function, attribute or a numeric constant for the longitude coordinate. |
+| <b>particleAltitude</b> | <i>number</i>, <i>string</i> or <i>func</i> | 0.01 | Particle object accessor function, attribute or a numeric constant for the altitude in terms of globe radius units. |
+| <b>particlesSize</b> | <i>number</i>, <i>string</i> or <i>func</i> | 0.5 | Particle set accessor function, attribute or a numeric constant for the size of all the particles in the group. |
+| <b>particlesSizeAttenuation</b> | <i>bool</i>, <i>string</i> or <i>func</i> | `true` | Particle set accessor function, attribute or a boolean constant for whether the size of each particle on the screen should be attenuated according to the distance to the camera. |
+| <b>particlesColor</b> | <i>string</i> or <i>func</i> | `white` | Particle set accessor function or attribute for the color of all the particles in the group. This setting will be ignored if `particlesTexture` is defined. |
+| <b>particlesTexture</b> | <i>string</i> or <i>func</i> | - | Particle set accessor function or attribute for the [Texture](https://threejs.org/docs/#api/en/textures/Texture) to be applied to all the particles in the group. |
+
 ### Rings Layer
 
 | Prop | Type | Default | Description |
@@ -278,7 +294,6 @@ then
 | --- | :--: | :--: | --- |
 | <b>onClick</b> | <i>func</i> | *-* | Callback function for globe element clicks. The type of layer, the associated data object (if exists) and the event object are included as arguments: `onClick(layer, elementData, event)`. |
 | <b>onHover</b> | <i>func</i> | *-* | Callback function for globe element mouse over events. The type of layer (or `undefined` if it's hovering off the globe) and the associated data object (if exists) are included as arguments: `onHover(layer, elementData)`. |
-
 
 ### Render Control
 

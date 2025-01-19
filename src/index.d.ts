@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Object3D, Material, Vector2, Camera } from 'three';
+import { Object3D, Material, Vector2, Camera, Texture } from 'three';
 import { ConfigOptions as ThreeGlobeConfigOptions } from 'three-globe';
 
 type Accessor<In, Out> = Out | string | ((obj: In) => Out);
@@ -151,6 +151,17 @@ export interface GlobeProps extends ThreeGlobeConfigOptions {
   tileMaterial?: ObjAccessor<Material>;
   tileCurvatureResolution?: ObjAccessor<number>;
   tilesTransitionDuration?: number;
+
+  // Particles layer
+  particlesData?: object[];
+  particlesList?: ObjAccessor<object[]>;
+  particleLat?: ObjAccessor<number>;
+  particleLng?: ObjAccessor<number>;
+  particleAltitude?: ObjAccessor<number>;
+  particlesSize?: ObjAccessor<number>;
+  particlesSizeAttenuation?: ObjAccessor<boolean>;
+  particlesColor?: ObjAccessor<string>;
+  particlesTexture?: ObjAccessor<Texture>;
 
   // Rings Layer
   ringsData?: object[];

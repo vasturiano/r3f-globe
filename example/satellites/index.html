@@ -1,0 +1,115 @@
+<head>
+  <style> body { margin: 0; } </style>
+
+  <script type="importmap">{ "imports": {
+    "three": "https://esm.sh/three",
+    "three/": "https://esm.sh/three/",
+    "three/addons/": "https://esm.sh/three/examples/jsm/",
+    "react": "https://esm.sh/react@18",
+    "react/": "https://esm.sh/react@18/",
+    "react-dom": "https://esm.sh/react-dom@18",
+    "react-dom/": "https://esm.sh/react-dom@18/",
+    "@react-three/fiber": "https://esm.sh/@react-three/fiber?external=react,react-dom,three",
+    "@react-three/drei": "https://esm.sh/@react-three/drei?external=@react-three/fiber,react,react-dom,three"
+  }}</script>
+
+<!--  <script type="module">import * as THREE from 'three'; import * as React from 'react'; window.THREE = THREE; window.React = React;</script>-->
+<!--  <script src="../../dist/r3f-globe.js" defer></script>-->
+</head>
+
+<body>
+  <div id="r3fScene"></div>
+
+  <script src="//unpkg.com/@babel/standalone"></script>
+  <script type="text/jsx" data-type="module">
+    import R3fGlobe from 'https://esm.sh/r3f-globe?external=three,react';
+    import React, { useMemo, useCallback, useEffect, useState } from "react";
+    import ReactDOM from "react-dom";
+    import { Canvas } from '@react-three/fiber';
+    import { OrbitControls } from '@react-three/drei';
+    import * as satellite from 'https://esm.sh/satellite.js';
+
+    const EARTH_RADIUS_KM = 6371; // km
+    const TIME_STEP = 3 * 1000; // per frame
+
+    const GlobeViz = () => {
+      const [satData, setSatData] = useState();
+      const [time, setTime] = useState(new Date());
+
+      useEffect(() => {
+        // time ticker
+        (function frameTicker() {
+          requestAnimationFrame(frameTicker);
+          setTime(time => new Date(+time + TIME_STEP));
+        })();
+      }, []);
+
+      useEffect(() => {
+        // load satellite data
+        fetch('//unpkg.com/globe.gl/example/datasets/space-track-leo.txt').then(r => r.text()).then(rawData => {
+          const tleData = rawData.replace(/\r/g, '')
+            .split(/\n(?=[^12])/)
+            .filter(d => d)
+            .map(tle => tle.split('\n'));
+          const satData = tleData.map(([name, ...tle]) => ({
+            satrec: satellite.twoline2satrec(...tle),
+            name: name.trim().replace(/^0 /, '')
+          }))
+          // exclude those that can't be propagated
+          .filter(d => !!satellite.propagate(d.satrec, new Date()).position);
+
+          setSatData(satData);
+        });
+      }, []);
+
+      const particlesData = useMemo(() => {
+        if (!satData) return [];
+
+        // Update satellite positions
+        const gmst = satellite.gstime(time);
+        return [
+          satData.map(d => {
+            const eci = satellite.propagate(d.satrec, time);
+            if (eci.position) {
+              const gdPos = satellite.eciToGeodetic(eci.position, gmst);
+              const lat = satellite.radiansToDegrees(gdPos.latitude);
+              const lng = satellite.radiansToDegrees(gdPos.longitude);
+              const alt = gdPos.height / EARTH_RADIUS_KM;
+              return { ...d, lat, lng, alt };
+            }
+            return d;
+          }).filter(d => !isNaN(d.lat) && !isNaN(d.lng) && !isNaN(d.alt))
+        ];
+      }, [satData, time]);
+
+      return <R3fGlobe
+        globeImageUrl="//unpkg.com/three-globe/example/img/earth-blue-marble.jpg"
+        particlesData={particlesData}
+        particleLabel="name"
+        particleLat="lat"
+        particleLng="lng"
+        particleAltitude="alt"
+        particlesColor={useCallback(() => 'palegreen', [])}
+        onHover={console.log}
+      />;
+    }
+
+    const Scene = () => {
+      return <div style={{ height: window.innerHeight }}>
+        <Canvas
+          camera={useMemo(() => ({position: [0, 0, 250]}), [])}
+          raycaster={useMemo(() => ({ params: { Points: { threshold: 0.2 } } }), [])}
+        >
+          <OrbitControls minDistance={101} maxDistance={1e4} dampingFactor={0.1} zoomSpeed={0.3} rotateSpeed={0.3} />
+          <color attach="background" args={[0, 0, 0]}/>
+          <ambientLight intensity={Math.PI}/>
+          <directionalLight intensity={0.6 * Math.PI}/>
+          <GlobeViz />
+        </Canvas>
+      </div>;
+    };
+
+    ReactDOM.createRoot(document.getElementById('r3fScene'))
+      .render(<Scene />);
+  </script>
+</body>
