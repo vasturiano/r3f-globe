@@ -37,6 +37,7 @@ export interface GlobeProps extends ThreeGlobeConfigOptions {
   // Globe layer
   globeImageUrl?: string | null;
   bumpImageUrl?: string | null;
+  globeTileEngineUrl?: ((x: number, y: number, level: number) => string)| null;
   showGlobe?: boolean;
   showGraticules?: boolean;
   showAtmosphere?: boolean;

@@ -14,6 +14,7 @@ React-Three-Fiber Globe Visualization
 #### Check out the examples:
 * [Basic](https://vasturiano.github.io/r3f-globe/example/basic/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/basic/index.html))
 * [Scene with multiple globe styles](https://vasturiano.github.io/r3f-globe/example/multiple-globes/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/multiple-globes/index.html))
+* [Tiled Map Engine](https://vasturiano.github.io/r3f-globe/example/tile-engine/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/tile-engine/index.html))
 * [Satellites](https://vasturiano.github.io/r3f-globe/example/satellites/) ([source](https://github.com/vasturiano/r3f-globe/blob/master/example/satellites/index.html))
 
 ## Quick start
@@ -61,6 +62,7 @@ then
 | --- | :--: | :--: | --- |
 | <b>globeImageUrl</b> | <i>string</i>| *-* | URL of the image used in the material that wraps the globe. This image should follow an [equirectangular projection](https://en.wikipedia.org/wiki/Equirectangular_projection). If no image is provided, the globe is represented as a black sphere. |
 | <b>bumpImageUrl</b> | <i>string</i>| *-* | URL of the image used to create a [bump map](https://threejs.org/docs/#api/en/materials/MeshStandardMaterial.bumpMap) in the material, to represent the globe's terrain. This image should follow an [equirectangular projection](https://en.wikipedia.org/wiki/Equirectangular_projection). |
+| <b>globeTileEngineUrl</b> | <i>func(x, y, l)</i> | *-* | Function that defines the URL of the [slippy map](https://en.wikipedia.org/wiki/Tiled_web_map) tile engine to cover the globe surface. The slippy map coordinates `x`, `y` and `l` (zoom level) are passed as arguments and the function is expected to return a URL string. A falsy value will disable the tiling engine. |
 | <b>showGlobe</b> | <i>bool</i> | `true` | Whether to show the globe surface itself. |
 | <b>showGraticules</b> | <i>bool</i> | `false` | Whether to show a graticule grid demarking latitude and longitude lines at every 10 degrees. |
 | <b>showAtmosphere</b> | <i>bool</i> | `true` | Whether to show a bright halo surrounding the globe, representing the atmosphere. |
@@ -305,6 +307,7 @@ then
 | --- | :--: | --- |
 | <b>pauseAnimation</b>| *-* | Pauses the animation on all globe layers. |
 | <b>resumeAnimation</b>| *-* | Resumes the animation on all globe layers. |
+| <b>setPointOfView</b> | (camera) | Some layers require knowledge about the location and view direction of the camera in order to behave correctly. Every time the camera position changes (f.e. on the controls `onChange` event) it's recommended to invoke this function, passing the current camera as sole argument, in order to keep the layers running optimally and synchronized with the view. |
 
 ### Utility
 
