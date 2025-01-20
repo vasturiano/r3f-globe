@@ -49,8 +49,7 @@ const Globe = forwardRef(({ onHover, onClick, ...ptProps }, ref) => {
   return createElement(GlobeComp, {
     ...ptProps,
     ref,
-    onPointerOver: onHoverInt,
-    onPointerOut: onHoverInt,
+    onPointerMove: onHoverInt,
     onClick: onClickInt
   });
 });
