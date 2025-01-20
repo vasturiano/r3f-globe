@@ -97,7 +97,8 @@
     const Scene = () => {
       return <div style={{ height: window.innerHeight }}>
         <Canvas
-          camera={useMemo(() => ({position: [0, 0, 250]}), [])}
+          flat
+          camera={useMemo(() => ({ position: [0, 0, 250] }), [])}
           raycaster={useMemo(() => ({ params: { Points: { threshold: 0.2 } } }), [])}
         >
           <OrbitControls minDistance={101} maxDistance={1e4} dampingFactor={0.1} zoomSpeed={0.3} rotateSpeed={0.3} />

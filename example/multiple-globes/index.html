@@ -58,7 +58,7 @@
 
     const Scene = () => {
       return <div style={{ height: window.innerHeight }}>
-        <Canvas camera={{ far: 4000 }}>
+        <Canvas flat camera={{ far: 4000 }}>
           <FlyControls movementSpeed={250} rollSpeed={Math.PI / 6} dragToLook={true} />
           <color attach="background" args={[0, 0, 0]}/>
           <ambientLight intensity={Math.PI}/>
