@@ -76,7 +76,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>pointsData</b> | <i>array</i> | `[]` | List of points to represent in the points map layer. Each point is displayed as a cylindrical 3D object rising perpendicularly from the surface of the globe. |
-| <b>pointLabel</b> | <i>string</i> or <i>func</i> | `name` | Point object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>pointLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Point object accessor function, attribute or a numeric constant for the cylinder's center latitude coordinate. |
 | <b>pointLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Point object accessor function, attribute or a numeric constant for the cylinder's center longitude coordinate. |
 | <b>pointColor</b> | <i>string</i> or <i>func</i> | `() => '#ffffaa'` | Point object accessor function or attribute for the cylinder color. |
@@ -91,7 +90,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>arcsData</b> | <i>array</i> | `[]` | List of links to represent in the arcs map layer. Each link is displayed as an arc line that rises from the surface of the globe, connecting the start and end coordinates. |
-| <b>arcLabel</b> | <i>string</i> or <i>func</i> | `name` | Arc object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>arcStartLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `startLat` | Arc object accessor function, attribute or a numeric constant for the line's start latitude coordinate. |
 | <b>arcStartLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `startLng` | Arc object accessor function, attribute or a numeric constant for the line's start longitude coordinate. |
 | <b>arcEndLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `endLat` | Arc object accessor function, attribute or a numeric constant for the line's end latitude coordinate. |
@@ -113,7 +111,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>polygonsData</b> | <i>array</i> | `[]` | List of polygon shapes to represent in the polygons map layer. Each polygon is displayed as a shaped cone that extrudes from the surface of the globe. |
-| <b>polygonLabel</b> | <i>string</i> or <i>func</i> | `name` | Polygon object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>polygonGeoJsonGeometry</b> | <i>string</i> or <i>func</i> | `geometry` | Polygon object accessor function or attribute for the GeoJson geometry specification of the polygon's shape. The returned value should have a minimum of two fields: `type` and `coordinates`. Only GeoJson geometries of type `Polygon` or `MultiPolygon` are supported, other types will be skipped. |
 | <b>polygonCapColor</b> | <i>string</i> or <i>func</i> | `() => '#ffffaa'` | Polygon object accessor function or attribute for the color of the top surface. |
 | <b>polygonCapMaterial</b> | <i>Material</i>, <i>string</i> or <i>func</i> | *-* | Polygon object accessor function, attribute or material object for the [ThreeJS material](https://threejs.org/docs/#api/en/materials/Material) to use in the top surface. This prop takes precedence over `polygonCapColor`, which will be ignored if both are defined. |
@@ -129,7 +126,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>pathsData</b> | <i>array</i> | `[]` | List of lines to represent in the paths map layer. Each path is displayed as a line that connects all the coordinate pairs in the path array. |
-| <b>pathLabel</b> | <i>string</i> or <i>func</i> | `name` | Path object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>pathPoints</b> | <i>array</i>, <i>string</i> or <i>func</i> | `pnts => pnts` | Path object accessor function, attribute or an array for the set of points that define the path line. By default, each path point is assumed to be a 2-position array (`[<lat>, <lon>]`). This default behavior can be modified using the `pathPointLat` and `pathPointLng` methods. |
 | <b>pathPointLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `arr => arr[0]` | Path point object accessor function, attribute or a numeric constant for the latitude coordinate. |
 | <b>pathPointLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `arr => arr[1]` | Path point object accessor function, attribute or a numeric constant for the longitude coordinate. |
@@ -164,7 +160,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>hexBinPointsData</b> | <i>array</i> | `[]` | List of points to aggregate using the hex bin map layer. Each point is added to an hexagonal prism 3D object that represents all the points within a tesselated portion of the space. |
-| <b>hexLabel</b> | <i>string</i> or <i>func</i>| *-* |Hex object accessor function or attribute for label (shown as tooltip). An hex object includes all points binned, and has the syntax: `{ points, sumWeight, center: { lat, lng } }`. Supports plain text or HTML content. |
 | <b>hexBinPointLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Point object accessor function, attribute or a numeric constant for the latitude coordinate. |
 | <b>hexBinPointLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Point object accessor function, attribute or a numeric constant for the longitude coordinate. |
 | <b>hexBinPointWeight</b> | <i>number</i>, <i>string</i> or <i>func</i> | 1 | Point object accessor function, attribute or a numeric constant for the weight of the point. Weights for points in the same bin are summed and determine the hexagon default altitude. |
@@ -182,7 +177,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>hexPolygonsData</b> | <i>array</i> | `[]` | List of polygon shapes to represent in the hexed polygons map layer. Each polygon is displayed as a tesselated group of hexagons that approximate the polygons shape according to the resolution specified in `hexPolygonResolution`. |
-| <b>hexPolygonLabel</b> | <i>string</i> or <i>func</i> | `name` | Hexed polygon object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>hexPolygonGeoJsonGeometry</b> | <i>string</i> or <i>func</i> | `geometry` | Hexed polygon object accessor function or attribute for the GeoJson geometry specification of the polygon's shape. The returned value should have a minimum of two fields: `type` and `coordinates`. Only GeoJson geometries of type `Polygon` or `MultiPolygon` are supported, other types will be skipped. |
 | <b>hexPolygonColor</b> | <i>string</i> or <i>func</i> | `() => '#ffffaa'` | Hexed polygon object accessor function or attribute for the color of each hexagon in the polygon. |
 | <b>hexPolygonAltitude</b> | <i>number</i>, <i>string</i> or <i>func</i> | 0.001 | Hexed polygon object accessor function, attribute or a numeric constant for the polygon's hexagons altitude in terms of globe radius units (`0` = 0 altitude, `1` = globe radius). |
@@ -198,7 +192,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>tilesData</b> | <i>array</i> | `[]` | List of tiles to represent in the tiles map layer. Each tile is displayed as a spherical surface segment. The segments can be placed side-by-side for a tiled surface and each can be styled separately. |
-| <b>tileLabel</b> | <i>string</i> or <i>func</i> | `name` | Tile object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>tileLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Tile object accessor function, attribute or a numeric constant for the segment's centroid latitude coordinate. |
 | <b>tileLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Tile object accessor function, attribute or a numeric constant for the segment's centroid longitude coordinate. |
 | <b>tileAltitude</b> | <i>number</i>, <i>string</i> or <i>func</i> | 0.01 | Tile object accessor function, attribute or a numeric constant for the segment's altitude in terms of globe radius units. |
@@ -242,7 +235,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>labelsData</b> | <i>array</i> | `[]` | List of label objects to represent in the labels map layer. |
-| <b>labelLabel</b> | <i>string</i> or <i>func</i>| *-* |Label object accessor function or attribute for its own tooltip label. Supports plain text or HTML content. |
 | <b>labelLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Label object accessor function, attribute or a numeric constant for the latitude coordinate. |
 | <b>labelLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Label object accessor function, attribute or a numeric constant for the longitude coordinate. |
 | <b>labelText</b> | <i>string</i> or <i>func</i> | `text` | Label object accessor function or attribute for the label text. |
@@ -273,7 +265,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>objectsData</b> | <i>array</i> | `[]` | Getter/setter for the list of custom 3D objects to represent in the objects layer. Each object is rendered according to the `objectThreeObject` method. |
-| <b>objectLabel</b> | <i>string</i> or <i>func</i> | `name` | Object accessor function or attribute for its own tooltip label. Supports plain text or HTML content. |
 | <b>objectLat</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lat` | Object accessor function, attribute or a numeric constant for the latitude coordinate of the object's position. |
 | <b>objectLng</b> | <i>number</i>, <i>string</i> or <i>func</i> | `lng` | Object accessor function, attribute or a numeric constant for the longitude coordinate of the object's position. |
 | <b>objectAltitude</b> | <i>number</i>, <i>string</i> or <i>func</i> | 0.01 | Object accessor function, attribute or a numeric constant for the altitude coordinate of the object's position, in terms of globe radius units. |
@@ -286,7 +277,6 @@ then
 | Prop | Type | Default | Description |
 | --- | :--: | :--: | --- |
 | <b>customLayerData</b> | <i>array</i> | `[]` | List of items to represent in the custom map layer. Each item is rendered according to the `customThreeObject` method. |
-| <b>customLayerLabel</b> | <i>string</i> or <i>func</i> | `name` | Object accessor function or attribute for label (shown as tooltip). Supports plain text or HTML content. |
 | <b>customThreeObject</b> | <i>Object3d</i>, <i>string</i> or <i>func</i>| *-* |Object accessor function or attribute for generating a custom 3d object to render as part of the custom map layer. Should return an instance of [ThreeJS Object3d](https://threejs.org/docs/index.html#api/core/Object3D). |
 | <b>customThreeObjectUpdate</b> | <i>string</i> or <i>func</i>| *-* |Object accessor function or attribute for updating an existing custom 3d object with new data. This can be used for performance improvement on data updates as the objects don't need to be removed and recreated at each update. The callback method's signature includes the object to be update and its new data: `customThreeObjectUpdate((obj, objData) => { ... })`. |
 
