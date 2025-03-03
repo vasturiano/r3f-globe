@@ -1,7 +1,8 @@
-import { createElement, forwardRef, useCallback, useRef } from 'react';
+import { forwardRef, useCallback, useRef } from 'react';
 import ThreeGlobe from 'three-globe';
 
 import fromThree from './fromThree';
+import HtmlLayer, { propKeys as htmlPropKeys } from './layers/HtmlElements';
 
 const GlobeComp = fromThree(ThreeGlobe, {
   initPropNames: ['waitForGlobeReady', 'animateIn'],
@@ -26,7 +27,15 @@ const getObjData = ((obj, intersection) => (({
   }[obj?.__globeObjType]) || (d => d))(obj?.__data)
 );
 
-const Globe = forwardRef(({ onHover, onClick, ...ptProps }, ref) => {
+const Globe = forwardRef(({ onHover, onClick, ...restProps }, ref) => {
+  const ptProps = {};
+  const htmlProps = {};
+  Object.entries(restProps).forEach(([key, value]) => {
+    const layer = [[htmlPropKeys, htmlProps]].find(([keys]) => keys.includes(key));
+    const propsObj = layer ? layer[1] : ptProps
+    propsObj[key] = value;
+  });
+
   const curHoverObjRef = useRef(null);
 
   const onHoverInt = useCallback((e) => {
@@ -46,12 +55,14 @@ const Globe = forwardRef(({ onHover, onClick, ...ptProps }, ref) => {
     }
   }, [onClick]);
 
-  return createElement(GlobeComp, {
-    ...ptProps,
-    ref,
-    onPointerMove: onHover ? onHoverInt: undefined,
-    onClick: onClick ? onClickInt : undefined
-  });
+  return <>
+    <GlobeComp
+      { ...{ ref, ...ptProps}}
+      onPointerMove={onHover ? onHoverInt: undefined}
+      onClick={onClick ? onClickInt : undefined}
+    />
+    <HtmlLayer {...htmlProps} />
+  </>
 });
 
 export default Globe;

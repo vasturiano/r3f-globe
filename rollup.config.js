@@ -11,13 +11,13 @@ const { name, homepage, version, dependencies, peerDependencies } = pkg;
 const umdConf = {
   format: 'umd',
   name: 'R3fGlobe',
-  globals: { react: 'React', three: 'THREE' },
+  globals: { react: 'React', ['react-dom/client']: 'ReactDOM', three: 'THREE', ['@react-three/fiber']: 'r3f' },
   banner: `// Version ${version} ${name} - ${homepage}`
 };
 
 export default [
   {
-    external: ['react', 'three'],
+    external: ['react', 'react-dom/client', 'three', '@react-three/fiber'],
     input: 'src/index.js',
     output: [
       {

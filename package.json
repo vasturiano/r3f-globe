@@ -44,10 +44,13 @@
     "example/**/*"
   ],
   "dependencies": {
+    "@react-three/drei": "*",
+    "accessor-fn": "^1.5.1",
     "jerrypick": "1",
     "three-globe": "^2.41"
   },
   "peerDependencies": {
+    "@react-three/fiber": "*",
     "react": "*",
     "three": ">=0.154"
   },
