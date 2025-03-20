@@ -15,8 +15,8 @@ export const Points = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-night.jpg',
-    bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg',
+    bumpImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png',
     pointsData: gData,
     pointAltitude: 'size',
     pointColor: 'color'
@@ -35,7 +35,7 @@ export const Arcs = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-night.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg',
     arcsData: gData,
     arcColor: 'color',
     arcDashLength: 0.4,
@@ -69,8 +69,8 @@ export const Paths = ptProps => {
   return createElement(R3fGlobe, {
     ...ptProps,
     animateIn: false,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-dark.jpg',
-    bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg',
+    bumpImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png',
     pathsData: gData,
     pathPointAlt: pnt => pnt[2],
     pathColor: () => ['rgba(0,0,255,0.8)', 'rgba(255,0,0,0.8)'],
@@ -91,7 +91,7 @@ export const CountryPolygons = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-dark.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg',
     polygonsData: polygons,
     polygonCapColor: () => 'rgba(200, 0, 0, 0.7)',
     polygonSideColor: () => 'rgba(0, 200, 0, 0.1)',
@@ -108,8 +108,8 @@ export const Hexbin = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-night.jpg',
-    bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg',
+    bumpImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png',
     hexBinPointsData: gData,
     hexBinPointWeight: 3,
     hexBinResolution: 2,
@@ -131,7 +131,7 @@ export const HexedPolygons = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-dark.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg',
     hexPolygonsData: polygons,
     hexPolygonResolution: 3,
     hexPolygonMargin: 0.3,
@@ -150,7 +150,7 @@ export const Heatmap = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-dark.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg',
     heatmapsData:[gData],
     heatmapPointLat: 'lat',
     heatmapPointLng: 'lng',
@@ -174,9 +174,9 @@ export const Population = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-night.jpg',
-    bumpImageUrl: '//unpkg.com/three-globe/example/img/earth-topology.png',
-    backgroundImageUrl: '//unpkg.com/three-globe/example/img/night-sky.png',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg',
+    bumpImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-topology.png',
+    backgroundImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/night-sky.png',
 
     hexBinPointsData: popData,
     hexBinPointWeight: 'pop',
@@ -284,7 +284,7 @@ export const Ripples = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-dark.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-dark.jpg',
     ringsData: gData,
     ringColor: () => colorInterpolator,
     ringMaxRadius: 'maxR',
@@ -298,7 +298,7 @@ export const Shield = ptProps => {
 
   return createElement(R3fGlobe, {
     ...ptProps,
-    globeImageUrl: '//unpkg.com/three-globe/example/img/earth-night.jpg',
+    globeImageUrl: '//cdn.jsdelivr.net/npm/three-globe/example/img/earth-night.jpg',
     ringsData: [shieldRing],
     ringAltitude: 0.25,
     ringColor: () => 'lightblue',
