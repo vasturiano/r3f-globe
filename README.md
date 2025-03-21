@@ -24,7 +24,7 @@ import R3fGlobe from 'r3f-globe';
 ```
 or using a *script* tag
 ```html
-<script src="//unpkg.com/r3f-globe"></script>
+<script src="//cdn.jsdelivr.net/npm/r3f-globe"></script>
 ```
 then
 ```jsx
