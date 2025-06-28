@@ -46,27 +46,27 @@
   ],
   "dependencies": {
     "jerrypick": "1",
-    "three-globe": "^2.41"
+    "three-globe": "^2.43"
   },
   "peerDependencies": {
     "react": "*",
     "three": ">=0.154"
   },
   "devDependencies": {
-    "@babel/core": "^7.26.10",
-    "@babel/preset-env": "^7.26.9",
-    "@babel/preset-react": "^7.26.3",
+    "@babel/core": "^7.27.7",
+    "@babel/preset-env": "^7.27.2",
+    "@babel/preset-react": "^7.27.1",
     "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-commonjs": "^28.0.3",
+    "@rollup/plugin-commonjs": "^28.0.6",
     "@rollup/plugin-node-resolve": "^16.0.1",
     "@rollup/plugin-replace": "^6.0.2",
     "@rollup/plugin-terser": "^0.4.4",
-    "@types/react": "^19.0.12",
+    "@types/react": "^19.1.8",
     "rimraf": "^6.0.1",
-    "rollup": "^4.36.0",
-    "rollup-plugin-dts": "^6.2.0",
-    "three": "^0.174.0",
-    "typescript": "^5.8.2"
+    "rollup": "^4.44.1",
+    "rollup-plugin-dts": "^6.2.1",
+    "three": "^0.177.0",
+    "typescript": "^5.8.3"
   },
   "engines": {
     "node": ">=12"
