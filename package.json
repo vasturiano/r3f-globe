@@ -46,7 +46,7 @@
   ],
   "dependencies": {
     "jerrypick": "1",
-    "three-globe": "^2.43"
+    "three-globe": "git+https://github.com/handsfelloff/three-globe.git"
   },
   "peerDependencies": {
     "react": "*",
