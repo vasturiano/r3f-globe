@@ -43,6 +43,10 @@ export interface GlobeProps extends ThreeGlobeConfigOptions {
   showAtmosphere?: boolean;
   atmosphereColor?: string;
   atmosphereAltitude?: number;
+  atmosphereIntensity?: number;
+  atmosphereDispersion?: number;
+  atmosphereDensity?: number;
+  atmosphereLightDirection?: number[];
   globeCurvatureResolution?: number;
   globeMaterial?: Material;
   onGlobeReady?: () => void;
