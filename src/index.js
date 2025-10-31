@@ -5,7 +5,7 @@ import fromThree from './fromThree';
 
 const GlobeComp = fromThree(ThreeGlobe, {
   initPropNames: ['waitForGlobeReady', 'animateIn'],
-  methodNames: ['getGlobeRadius', 'getCoords', 'toGeoCoords', 'pauseAnimation', 'resumeAnimation', 'setPointOfView']
+  methodNames: ['getGlobeRadius', 'getCoords', 'toGeoCoords', 'pauseAnimation', 'resumeAnimation', 'setPointOfView', 'globeTileEngineClearCache']
 });
 
 const getGlobeEventObj = ({ intersections }) => {

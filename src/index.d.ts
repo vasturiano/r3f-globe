@@ -234,6 +234,9 @@ export interface GlobeMethods {
   getGlobeRadius(): number;
   getCoords(lat: number, lng: number, altitude?: number): CartesianCoords;
   toGeoCoords(coords: CartesianCoords): GeoCoords;
+
+  // Other
+  globeTileEngineClearCache(): void;
 }
 
 type FCwithRef<P = {}, R = {}> = React.FunctionComponent<P & { ref?: React.MutableRefObject<R | undefined> }>;

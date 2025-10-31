@@ -77,6 +77,10 @@ then
 | <b>globeMaterial</b> | <i>Material</i> | [MeshPhongMaterial](https://threejs.org/docs/#api/en/materials/MeshPhongMaterial) | ThreeJS material used to wrap the globe. |
 | <b>onGlobeReady</b> | <i>func</i> | *-* | Callback function to invoke immediately after the globe has been initialized and visible on the scene. |
 
+| Method | Arguments | Description |
+| --- | :--: | --- |
+| <b>globeTileEngineClearCache</b> | *-* | Clear the tile engine cache. |
+
 ### Points Layer
 
 | Prop | Type | Default | Description |
